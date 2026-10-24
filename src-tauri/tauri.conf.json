@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "便捷压缩助手_V0.0.1",
+  "version": "0.0.1",
+  "identifier": "org.easyarchive.assistant",
+  "build": { "frontendDist": "../dist", "devUrl": "http://localhost:1420" },
+  "app": {
+    "windows": [{ "label": "main", "title": "便捷压缩助手_V0.0.1 · Easy Archive Assistant", "width": 1160, "height": 820, "minWidth": 860, "minHeight": 640, "devtools": false }],
+    "security": {
+      "capabilities": ["main"],
+      "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' asset: http://asset.localhost; font-src 'self'; connect-src ipc: http://ipc.localhost; object-src 'none'; frame-src 'none'; form-action 'none'; base-uri 'none'",
+      "freezePrototype": true
+    }
+  },
+  "bundle": { "active": false }
+}

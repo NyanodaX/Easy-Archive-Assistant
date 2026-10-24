@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "main",
+  "description": "Local main window: events and four restricted archive commands only.",
+  "windows": ["main"],
+  "permissions": ["core:event:allow-listen", "core:event:allow-unlisten", "allow-choose-path", "allow-choose-paths", "allow-plan-operation", "allow-execute-plan", "allow-cancel-task"]
+}

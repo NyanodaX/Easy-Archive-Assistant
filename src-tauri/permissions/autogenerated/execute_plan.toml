@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-execute-plan"
+description = "Enables the execute_plan command without any pre-configured scope."
+commands.allow = ["execute_plan"]
+
+[[permission]]
+identifier = "deny-execute-plan"
+description = "Denies the execute_plan command without any pre-configured scope."
+commands.deny = ["execute_plan"]

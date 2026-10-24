@@ -1,0 +1,102 @@
+[
+  {
+    "file": "webview2-rs-MIT.txt",
+    "url": "https://raw.githubusercontent.com/wravery/webview2-rs/edc2caf886175ccaebe86078c9cfe1ae2a187328/LICENSE",
+    "sha256": "0dcf41516e608bbcb6cdc5229feb7b86fe4a643b85e7df251133c93408fdac73"
+  },
+  {
+    "file": "webview2-macros-MIT.txt",
+    "url": "https://raw.githubusercontent.com/wravery/webview2-rs/dffa41a8a46d3f5565eefbff2de57d38d399f158/LICENSE",
+    "sha256": "0dcf41516e608bbcb6cdc5229feb7b86fe4a643b85e7df251133c93408fdac73"
+  },
+  {
+    "file": "alloc-stdlib-BSD.txt",
+    "url": "https://raw.githubusercontent.com/dropbox/rust-alloc-no-stdlib/0a81fd6928ea3b33c8cd484aa4575d50ffb98012/LICENSE",
+    "sha256": "c0c56f26d9c051cac4d200c34c84e7ae9aaa853e01a982a1df08b09931e518ae"
+  },
+  {
+    "file": "MPL-2.0.txt",
+    "url": "https://www.mozilla.org/media/MPL/2.0/index.txt",
+    "sha256": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04"
+  },
+  {
+    "file": "WebView2-SDK-0-LICENSE.txt",
+    "url": "https://api.nuget.org/v3-flatcontainer/microsoft.web.webview2/1.0.3800.47/microsoft.web.webview2.1.0.3800.47.nupkg#LICENSE.txt",
+    "sha256": "0af8f1b807512aae39c2ac1aa4d0cae65cabecb6fd554b8439a5162a0d6eca55"
+  },
+  {
+    "file": "WebView2-SDK-1-NOTICE.txt",
+    "url": "https://api.nuget.org/v3-flatcontainer/microsoft.web.webview2/1.0.3800.47/microsoft.web.webview2.1.0.3800.47.nupkg#NOTICE.txt",
+    "sha256": "106423785c5b7eba0a8e61d1837f2132e9c828e20ad530f565d981c1df60dd90"
+  },
+  {
+    "file": "rust-runtime/COPYRIGHT-library.html",
+    "source": "Rust 1.99.1 installed distribution share/doc/rust; bundled library copyright/standard license texts",
+    "sha256": "5647be074c8edf7339fd863055923a8fc80bc5610a8d4661ec3b767b9d392c27"
+  },
+  {
+    "file": "rust-runtime/licenses/Apache-2.0.txt",
+    "source": "Rust 1.99.1 installed distribution share/doc/rust; bundled library copyright/standard license texts",
+    "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff"
+  },
+  {
+    "file": "rust-runtime/licenses/BSD-2-Clause.txt",
+    "source": "Rust 1.99.1 installed distribution share/doc/rust; bundled library copyright/standard license texts",
+    "sha256": "f32fb3b417a194167cfad068223fc975ba96c5960513a10f66a3c28720aec1df"
+  },
+  {
+    "file": "rust-runtime/licenses/CC-BY-SA-4.0.txt",
+    "source": "Rust 1.99.1 installed distribution share/doc/rust; bundled library copyright/standard license texts",
+    "sha256": "23ee78c8bae49cf08ea2f0c84945c66b987ebe4520881fb51b3dad4fb43d07c2"
+  },
+  {
+    "file": "rust-runtime/licenses/GCC-exception-3.1.txt",
+    "source": "Rust 1.99.1 installed distribution share/doc/rust; bundled library copyright/standard license texts",
+    "sha256": "a3966c9410ef94a1efbfa9ec04e9c1994026a70623fbf0885ce36737bfba3b54"
+  },
+  {
+    "file": "rust-runtime/licenses/GPL-2.0-only.txt",
+    "source": "Rust 1.99.1 installed distribution share/doc/rust; bundled library copyright/standard license texts",
+    "sha256": "54b212ba1f97f6948fa5486239ab505dd820b02e50cbfd296b4062c8609a70af"
+  },
+  {
+    "file": "rust-runtime/licenses/GPL-3.0-or-later.txt",
+    "source": "Rust 1.99.1 installed distribution share/doc/rust; bundled library copyright/standard license texts",
+    "sha256": "05315fce6c35f79b8a35454828995fa26336f235895ac64557abc028f4ffcea2"
+  },
+  {
+    "file": "rust-runtime/licenses/ISC.txt",
+    "source": "Rust 1.99.1 installed distribution share/doc/rust; bundled library copyright/standard license texts",
+    "sha256": "0ff61769b238634e042ab759dddfd104a8e69d091e3600ae3410e401a6164381"
+  },
+  {
+    "file": "rust-runtime/licenses/LLVM-exception.txt",
+    "source": "Rust 1.99.1 installed distribution share/doc/rust; bundled library copyright/standard license texts",
+    "sha256": "e34c58338bd89d43e709e226610d8f32b3e3c47f4ad9a99a8dc1d4ac7842488e"
+  },
+  {
+    "file": "rust-runtime/licenses/MIT.txt",
+    "source": "Rust 1.99.1 installed distribution share/doc/rust; bundled library copyright/standard license texts",
+    "sha256": "b85dcd3e453d05982552c52b5fc9e0bdd6d23c6f8e844b984a88af32570b0cc0"
+  },
+  {
+    "file": "rust-runtime/licenses/NCSA.txt",
+    "source": "Rust 1.99.1 installed distribution share/doc/rust; bundled library copyright/standard license texts",
+    "sha256": "39cb0234065c92b9e6cee3830cbb52b1aa289aa8fe9ba2e66730fec5cf05c630"
+  },
+  {
+    "file": "rust-runtime/licenses/OFL-1.1.txt",
+    "source": "Rust 1.99.1 installed distribution share/doc/rust; bundled library copyright/standard license texts",
+    "sha256": "8eea8287e5876b539670cadb82e99f9a7afddec6f6730811be1daf25d2e9bcfd"
+  },
+  {
+    "file": "rust-runtime/licenses/Unicode-3.0.txt",
+    "source": "Rust 1.99.1 installed distribution share/doc/rust; bundled library copyright/standard license texts",
+    "sha256": "f5062c9a188d81dfe66b56db4182dcf9e4b17c0d9b0d311a8e20b3a1b075c443"
+  },
+  {
+    "file": "rust-runtime/README.md",
+    "source": "Rust 1.99.1 installed distribution share/doc/rust; bundled library copyright/standard license texts",
+    "sha256": "b3f6ef2fef88b98cb9ec013a5c86213095e53e40eb228679574e4d06517f33c8"
+  }
+]
