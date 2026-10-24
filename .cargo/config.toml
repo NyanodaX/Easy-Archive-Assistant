@@ -1,0 +1,5 @@
+# Keep the optional pure-Rust Windows fallback runnable outside the toolchain's
+# PATH. Otherwise gnullvm executables depend on an external libunwind.dll.
+[target.x86_64-pc-windows-gnullvm]
+rustflags = ["-C", "target-feature=+crt-static"]
+
