@@ -1,0 +1,10 @@
+/target/
+/.tools/
+/.artifacts/
+/node_modules/
+/dist/
+/src-tauri/gen/
+*.log
+/docs/
+/AGENTS.md
+/START_HERE.md
