@@ -1,0 +1,25 @@
+[package]
+name = "easy-archive-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "easy-archive-assistant"
+path = "src/main.rs"
+
+[dependencies]
+easy-archive-core = { path = "../easy-archive-core" }
+serde.workspace = true
+serde_json.workspace = true
+clap.workspace = true
+ctrlc.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true
+
+[lints]
+workspace = true
+

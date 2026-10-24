@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ArchiveFlow M0 response v1 / M0 响应",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "operation", "status", "input", "planned_output", "verification_level", "warnings", "data", "error"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "operation": {"enum": ["inspect", "split", "request", "help"]},
+    "status": {"enum": ["inspected", "planned", "info", "error"]},
+    "input": {"type": ["object", "null"]},
+    "planned_output": {"type": "array", "maxItems": 10001, "items": {"type": "string"}},
+    "verification_level": {"const": "unverified"},
+    "warnings": {"type": "array", "items": {"$ref": "#/$defs/bilingual"}},
+    "data": {"type": ["object", "null"]},
+    "error": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/error"}]}
+  },
+  "allOf": [
+    {"if": {"properties": {"status": {"const": "error"}}}, "then": {"properties": {"error": {"$ref": "#/$defs/error"}}}, "else": {"properties": {"error": {"type": "null"}}}}
+  ],
+  "$defs": {
+    "bilingual": {"type": "object", "additionalProperties": false, "required": ["en", "zh_cn"], "properties": {"en": {"type": "string"}, "zh_cn": {"type": "string"}}},
+    "error": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message", "suggestion", "retryable"],
+      "properties": {
+        "code": {"enum": ["INVALID_ARGUMENT", "INVALID_SIZE", "LIMIT_EXCEEDED", "INPUT_NOT_FOUND", "INPUT_NOT_REGULAR_FILE", "UNSAFE_PATH", "UNSUPPORTED_VOLUME_FORMAT", "OUTPUT_EXISTS", "MANIFEST_INVALID", "NOT_IMPLEMENTED", "IO_ERROR"]},
+        "message": {"$ref": "#/$defs/bilingual"},
+        "suggestion": {"$ref": "#/$defs/bilingual"},
+        "retryable": {"type": "boolean"}
+      }
+    }
+  }
+}

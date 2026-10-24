@@ -1,0 +1,272 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "便捷压缩助手 / Easy Archive Assistant response v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "operation",
+    "status",
+    "input",
+    "planned_output",
+    "verification_level",
+    "warnings",
+    "data",
+    "error"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "operation": {
+      "enum": [
+        "inspect",
+        "split",
+        "merge",
+        "reshard",
+        "rebuild-part",
+        "coverage",
+        "rescue",
+        "verify",
+        "transactions",
+        "recover",
+        "restart",
+        "request",
+        "help"
+      ]
+    },
+    "status": {
+      "enum": [
+        "inspected",
+        "planned",
+        "success",
+        "info",
+        "error"
+      ]
+    },
+    "input": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "planned_output": {
+      "type": "array",
+      "maxItems": 10001,
+      "items": {
+        "type": "string"
+      }
+    },
+    "verification_level": {
+      "enum": [
+        "unverified",
+        "verified_against_original",
+        "verified_against_available_sources"
+      ]
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/bilingual"
+      }
+    },
+    "data": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "error": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/error"
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "error"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "error": {
+            "$ref": "#/$defs/error"
+          },
+          "verification_level": {
+            "const": "unverified"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "error": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "success"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "verification_level": {
+            "enum": [
+              "verified_against_original",
+              "verified_against_available_sources"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "bilingual": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "en",
+        "zh_cn"
+      ],
+      "properties": {
+        "en": {
+          "type": "string"
+        },
+        "zh_cn": {
+          "type": "string"
+        }
+      }
+    },
+    "error": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "code",
+        "message",
+        "suggestion",
+        "retryable"
+      ],
+      "properties": {
+        "code": {
+          "enum": [
+            "INVALID_ARGUMENT",
+            "INVALID_SIZE",
+            "LIMIT_EXCEEDED",
+            "INPUT_NOT_FOUND",
+            "INPUT_NOT_REGULAR_FILE",
+            "UNSAFE_PATH",
+            "UNSUPPORTED_VOLUME_FORMAT",
+            "OUTPUT_EXISTS",
+            "MANIFEST_INVALID",
+            "MANIFEST_REQUIRED",
+            "PART_MISSING",
+            "PART_DUPLICATE",
+            "PART_GROUP_MISMATCH",
+            "OUTPUT_DIRECTORY_REQUIRED",
+            "PART_HASH_MISMATCH",
+            "SOURCE_HASH_MISMATCH",
+            "SOURCE_IDENTITY_MISMATCH",
+            "SOURCE_SIZE_MISMATCH",
+            "MISSING_COVERAGE",
+            "INPUT_CHANGED_DURING_OPERATION",
+            "CANCELLED",
+            "INSUFFICIENT_DISK_SPACE",
+            "TRANSACTION_NEEDS_RECOVERY",
+            "NOT_IMPLEMENTED",
+            "IO_ERROR"
+          ]
+        },
+        "message": {
+          "$ref": "#/$defs/bilingual"
+        },
+        "suggestion": {
+          "$ref": "#/$defs/bilingual"
+        },
+        "retryable": {
+          "type": "boolean"
+        },
+        "recovery_task_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{32}$"
+        },
+        "part_index": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000
+        },
+        "coverage_details": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "missing_ranges",
+            "pending_ranges"
+          ],
+          "properties": {
+            "missing_ranges": {
+              "type": "array",
+              "maxItems": 20001,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "start",
+                  "end_exclusive"
+                ],
+                "properties": {
+                  "start": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 18446744073709551615
+                  },
+                  "end_exclusive": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 18446744073709551615
+                  }
+                }
+              }
+            },
+            "pending_ranges": {
+              "type": "array",
+              "maxItems": 20001,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "start",
+                  "end_exclusive"
+                ],
+                "properties": {
+                  "start": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 18446744073709551615
+                  },
+                  "end_exclusive": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 18446744073709551615
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
