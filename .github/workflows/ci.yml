@@ -1,0 +1,51 @@
+name: Build and verify
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  core:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: rustup toolchain install 1.99.1 --profile minimal --component rustfmt --component clippy
+      - run: cargo +1.99.1 fmt --all --check
+      - run: cargo +1.99.1 clippy --locked --workspace --exclude easy-archive-desktop --all-targets -- -D warnings
+      - run: cargo +1.99.1 test --locked --workspace --exclude easy-archive-desktop
+  desktop-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24.22.1
+          cache: npm
+      - run: rustup toolchain install 1.99.1 --profile minimal --component clippy
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - run: npm audit --audit-level=moderate
+      - run: cargo +1.99.1 install cargo-audit --version 0.22.2 --locked
+      - run: cargo +1.99.1 audit --json > cargo-audit.json
+      - run: cargo +1.99.1 clippy --locked --workspace --all-targets -- -D warnings
+      - run: cargo +1.99.1 test --locked --workspace
+      - run: cargo +1.99.1 build --locked --release --workspace
+      - run: cargo +1.99.1 metadata --locked --format-version 1 --filter-platform x86_64-pc-windows-msvc > metadata-windows.json
+      - run: python scripts/dependency-notices.py metadata-windows.json .artifacts/notices
+      - run: powershell -NoProfile -File scripts/smoke-windows.ps1
+      - name: Package and verify
+        shell: pwsh
+        run: |
+          $release = powershell -NoProfile -File scripts/package-windows.ps1 | ConvertFrom-Json
+          python scripts/validate-package.py $release.package
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: easy-archive-assistant-windows
+          path: .artifacts/releases/
+          retention-days: 14
